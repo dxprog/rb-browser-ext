@@ -15,7 +15,7 @@ function imageSearch(info) {
 }
 
 /**
- * Opens a RedditBooru image search
+ * Opens up the image rehost dialog on RedditBooru
  *
  * @method imageRehost
  * @param {Object} info Object containing information about the image
