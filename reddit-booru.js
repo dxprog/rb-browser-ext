@@ -1,6 +1,34 @@
 // Cross-browser reference to the extensions API
 var browser = browser || chrome;
 
+var ACTIVE_TAB_QUERY = {
+  active: true,
+  currentWindow: true
+};
+
+/**
+ * Opens a new active tab after the current tab to the URL provided
+ * @param {String} url The URL to open
+ */
+function openUrlInNewTab(url) {
+  var tabCallback = function tabCallback(tabs) {
+    var tab = tabs.shift();
+    var index = !!tab ? tab.index + 1 : null;
+    browser.tabs.create({
+      active: true,
+      url: url,
+      index: index
+    });
+  };
+
+  // Chrome and FF have different function signatures for their tabs stuff... bastards.
+  if (!!chrome) {
+    browser.tabs.query(ACTIVE_TAB_QUERY, tabCallback);
+  } else {
+    browser.tabs.query(ACTIVE_TAB_QUERY).then(tabCallback);
+  }
+}
+
 /**
  * Opens a RedditBooru image search
  *
@@ -8,10 +36,7 @@ var browser = browser || chrome;
  * @param {Object} info Object containing information about the image
  */
 function imageSearch(info) {
-  browser.tabs.create({
-    active: true,
-    url: 'http://redditbooru.com/search/?imageUri=' + encodeURIComponent(info.srcUrl)
-  });
+  openUrlInNewTab('http://redditbooru.com/search/?imageUri=' + encodeURIComponent(info.srcUrl));
 }
 
 /**
@@ -21,10 +46,7 @@ function imageSearch(info) {
  * @param {Object} info Object containing information about the image
  */
 function imageRehost(info) {
-  browser.tabs.create({
-    active: true,
-    url: 'http://redditbooru.com/?dialog=upload&rehost=' + encodeURIComponent(info.srcUrl)
-  });
+  openUrlInNewTab('http://redditbooru.com/?dialog=upload&rehost=' + encodeURIComponent(info.srcUrl));
 }
 
 // Create the context menus

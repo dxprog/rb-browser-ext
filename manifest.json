@@ -4,7 +4,7 @@
   "author": "Matt Hackmann <matt@dxprog.com>",
   "name": "RedditBooru",
   "description": "Use RedditBooru to check for reposts and rehost images from your favorite browser.",
-  "version": "2.0",
+  "version": "2.1",
 
   "permissions": [
     "contextMenus",
