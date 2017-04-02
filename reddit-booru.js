@@ -36,7 +36,7 @@ function openUrlInNewTab(url) {
  * @param {Object} info Object containing information about the image
  */
 function imageSearch(info) {
-  openUrlInNewTab('http://redditbooru.com/search/?imageUri=' + encodeURIComponent(info.srcUrl));
+  openUrlInNewTab('https://redditbooru.com/search/?imageUri=' + encodeURIComponent(info.srcUrl));
 }
 
 /**
@@ -46,7 +46,7 @@ function imageSearch(info) {
  * @param {Object} info Object containing information about the image
  */
 function imageRehost(info) {
-  openUrlInNewTab('http://redditbooru.com/?dialog=upload&rehost=' + encodeURIComponent(info.srcUrl));
+  openUrlInNewTab('https://redditbooru.com/?dialog=upload&rehost=' + encodeURIComponent(info.srcUrl));
 }
 
 // Create the context menus
